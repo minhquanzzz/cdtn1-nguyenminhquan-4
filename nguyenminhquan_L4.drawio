@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="VoCMO96q2G3qVY86-ppS">
+    <mxGraphModel dx="1212" dy="661" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Khách hàng&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-15" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Kỹ thuật viên" vertex="1">
+          <mxGeometry height="60" width="30" x="580" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-21" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Quản lý&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="30" x="100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-22" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-1" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-30" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="370" y="335" as="sourcePoint" />
+            <mxPoint x="190.00000000000296" y="105" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-23" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-21" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-30" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="160" as="sourcePoint" />
+            <mxPoint x="427.7382967369997" y="155.4720309464294" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-24" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-21" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-32" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="210" y="260" as="sourcePoint" />
+            <mxPoint x="365.6955511894412" y="309.4420160017098" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-26" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-21" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-35" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="240" y="420" as="sourcePoint" />
+            <mxPoint x="378.83407268628184" y="503.6684472341076" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-27" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-36" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-15" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="634.7152903104975" y="506.4145870931493" as="sourcePoint" />
+            <mxPoint x="360" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-30" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="tạo lịch hẹn" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-32" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="kiểm tra KTV" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-33" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="phân công KTV" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-34" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-21" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-33" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="210" y="410" as="sourcePoint" />
+            <mxPoint x="459" y="555" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-35" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="điều chỉnh phân công" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="xem lịch được phân công" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-37" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="cập nhật trạng thái lịch hẹn" vertex="1">
+          <mxGeometry height="70" width="140" x="300" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-40" edge="1" parent="1" source="vdaDmGzURTv-Aa3k10Q_-37" style="endArrow=none;html=1;rounded=0;" target="vdaDmGzURTv-Aa3k10Q_-15" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="640" y="610" as="sourcePoint" />
+            <mxPoint x="762" y="651" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vdaDmGzURTv-Aa3k10Q_-56" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="hệ thống quản lí lịch hẹn và phân công KTV" vertex="1">
+          <mxGeometry height="620" width="300" x="220" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
