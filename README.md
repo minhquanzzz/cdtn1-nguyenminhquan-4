@@ -18,12 +18,16 @@ Biến môi trường: xem .env.example
 ## 3. Hướng dẫn chạy
 (BT2 yêu cầu ≤ 4 bước)
 Tạo file .env từ .env.example và điền các giá trị cần thiết.
-Cài đặt các thư viện:
-pip install -r requirements.txt
+Cài đặt các thư viện cần thiết
 Khởi động PostgreSQL và chạy ứng dụng.
 Mở hệ thống tại địa chỉ được cấu hình.
 ## 4. Cấu trúc thư mục
-src/ : Mã nguồn chính của hệ thống
+docs/: Chứa tài liệu phân tích và đặc tả hệ thống.
+docs/srs.md: Tài liệu đặc tả yêu cầu phần mềm, gồm User Story, Use Case, FR và NFR.
+docs/ai-disclosure.md: Ghi nhận việc sử dụng công cụ AI trong quá trình thực hiện.
+.env.example: Mẫu các biến môi trường cần thiết cho hệ thống.
+.gitignore: Khai báo các file/thư mục không đưa lên Git.
+README.md: Giới thiệu dự án, hướng dẫn chạy và trạng thái hiện tại.
 ## 5. Kiểm thử
 npm test → hiển thị số test PASS
 ## 6. Trạng thái hiện tại
