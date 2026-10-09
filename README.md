@@ -28,9 +28,15 @@ docs/ai-disclosure.md: Ghi nhận việc sử dụng công cụ AI trong quá tr
 .env.example: Mẫu các biến môi trường cần thiết cho hệ thống.
 .gitignore: Khai báo các file/thư mục không đưa lên Git.
 README.md: Giới thiệu dự án, hướng dẫn chạy và trạng thái hiện tại.
+- `docs/api-contract.md`: Đặc tả endpoint, Request/Response, mã HTTP và quy tắc validation.
 ## 5. Kiểm thử
 npm test → hiển thị số test PASS
 ## 6. Trạng thái hiện tại
- Khởi tạo project, smoke test chạy được (buổi 2)
-□ Module tiếp nhận yêu cầu (buổi 8–10)
-□ Module phân công kỹ thuật viên (buổi 10–12)
+- [x] Khởi tạo repository.
+- [x] Xây dựng User Story cho luồng L4.
+- [x] Xây dựng Use Case và sơ đồ Use Case.
+- [x] Xây dựng tài liệu SRS.
+- [x] Xây dựng bản đặc tả API Contract.
+- [ ] Hoàn thiện Data Spec.
+- [ ] Triển khai backend và cơ sở dữ liệu.
+- [ ] Kiểm thử các chức năng nghiệp vụ.
