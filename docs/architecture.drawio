@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="gh35WMQjBwF2qxznAULC">
+    <mxGraphModel dx="798" dy="436" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Lớp giao diện (frontend)&lt;/b&gt;&lt;div&gt;&lt;span&gt;Màn &lt;/span&gt;&lt;span&gt;hình &lt;/span&gt;&lt;span&gt;quản &lt;/span&gt;&lt;span&gt;lý &lt;/span&gt;&lt;span&gt;phiếu, &lt;/span&gt;&lt;span&gt;phân &lt;/span&gt;&lt;span&gt;công &lt;/span&gt;&lt;span&gt;kỹ &lt;/span&gt;&lt;span&gt;thuật &lt;/span&gt;&lt;span&gt;viên &lt;/span&gt;&lt;span&gt;và &lt;/span&gt;&lt;span&gt;quản &lt;/span&gt;&lt;span&gt;lý &lt;/span&gt;&lt;span&gt;lịch &lt;/span&gt;&lt;span&gt;hẹn.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="330" x="220" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Lớp xử lí nghiệp vụ (backend/API)&lt;/b&gt;&lt;div&gt;ticket service: quản lí phiếu, phân công&lt;/div&gt;&lt;div&gt;appointment service: t&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;ạo &lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;lịch, &lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;kiểm &lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;tra &lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;trùng &lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;lịch&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;technician service: quản lý kỹ thuật viên&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;technician skill service: kiểm tra tay nghề&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="290" x="240" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Lớp dữ liệu (database)&lt;/b&gt;&lt;div&gt;PostgreSQL: gồm 4 bảng thuộc luồng 4&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="235" x="267.5" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-4" edge="1" parent="1" source="IPq-aoz2pO7fefmo6KoQ-2" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" target="IPq-aoz2pO7fefmo6KoQ-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="430" y="270" as="sourcePoint" />
+            <mxPoint x="480" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="HTTP/JSON" vertex="1">
+          <mxGeometry height="30" width="60" x="400" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-6" edge="1" parent="1" source="IPq-aoz2pO7fefmo6KoQ-2" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" target="IPq-aoz2pO7fefmo6KoQ-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="430" y="270" as="sourcePoint" />
+            <mxPoint x="480" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IPq-aoz2pO7fefmo6KoQ-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="truy vấn và lưu dữ liệu" vertex="1">
+          <mxGeometry height="30" width="60" x="390" y="305" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
