@@ -12,15 +12,16 @@ Nhân viên có thể tạo lịch hẹn, kiểm tra lịch làm việc và phâ
 Kỹ thuật viên có thể xem các lịch hẹn được giao và cập nhật trạng thái thực hiện.
 Hệ thống giúp hạn chế tình trạng trùng lịch và hỗ trợ theo dõi tiến độ xử lý.
 ## 2. Yêu cầu môi trường
-Python 3.11
-PostgreSQL 16
-Biến môi trường: xem .env.example
+- Node.js 20 LTS
+- npm
+- Docker Desktop
+- PostgreSQL 16 (chạy bằng Docker)
+- Biến môi trường: cấu hình theo file `.env.example`
 ## 3. Hướng dẫn chạy
-(BT2 yêu cầu ≤ 4 bước)
-Tạo file .env từ .env.example và điền các giá trị cần thiết.
-Cài đặt các thư viện cần thiết
-Khởi động PostgreSQL và chạy ứng dụng.
-Mở hệ thống tại địa chỉ được cấu hình.
+1. Tạo file `.env` từ `.env.example` và cấu hình kết nối PostgreSQL.
+2. Chạy `npm install` để cài đặt thư viện.
+3. Khởi động PostgreSQL bằng `docker compose up -d`, sau đó chạy `npm run db:migrate`.
+4. Chạy `npm run dev` và truy cập địa chỉ được cấu hình.
 ## 4. Cấu trúc thư mục
 docs/: Chứa tài liệu phân tích và đặc tả hệ thống.
 docs/srs.md: Tài liệu đặc tả yêu cầu phần mềm, gồm User Story, Use Case, FR và NFR.
