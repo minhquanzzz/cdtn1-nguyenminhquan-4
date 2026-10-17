@@ -38,6 +38,11 @@ npm test → hiển thị số test PASS
 - [x] Xây dựng Use Case và sơ đồ Use Case.
 - [x] Xây dựng tài liệu SRS.
 - [x] Xây dựng bản đặc tả API Contract.
-- [ ] Hoàn thiện Data Spec.
-- [ ] Triển khai backend và cơ sở dữ liệu.
-- [ ] Kiểm thử các chức năng nghiệp vụ.
+- [x] Khởi tạo và cấu hình dự án backend bằng Node.js và Express.
+- [x] Thiết lập cấu hình môi trường bằng file `.env`.
+- [x] Xây dựng endpoint `/` để giới thiệu trạng thái backend.
+- [x] Xây dựng endpoint `/health` để kiểm tra tình trạng hoạt động và kết nối cơ sở dữ liệu.
+- [x] Xây dựng tuyến API `/api/v1/tickets` cho module quản lý yêu cầu (ticket).
+- [x] Kiểm tra hoạt động ban đầu của các endpoint chính.
+- [x] Tổ chức mã nguồn theo cấu trúc dự án.
+- [x] Cập nhật tài liệu README và ghi nhận tiến độ thực hiện.
