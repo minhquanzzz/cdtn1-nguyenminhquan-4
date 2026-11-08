@@ -122,3 +122,26 @@ BT1 đã xác định mô hình dữ liệu gồm 5 bảng chính: `ticket`, `te
 Sang BT2, hệ thống tập trung xây dựng Backend, Frontend, kết nối PostgreSQL và hiện thực hóa module CRUD Ticket. Các bảng và nghiệp vụ liên quan đến kỹ thuật viên, lịch hẹn và lịch sử trạng thái tiếp tục được giữ trong định hướng thiết kế, nhưng chưa được triển khai thành chức năng hoàn chỉnh.
 
 Các thay đổi tiếp theo sẽ được ghi nhận và cập nhật đồng bộ giữa SRS, ERD, SQL DDL, API Contract và mã nguồn nhằm bảo đảm tính nhất quán của hệ thống.
+
+PHẢN HỒI VÀ QUYẾT ĐỊNH KHẮC PHỤC SAU BT2
+
+1. Nhận xét: Chưa hiện thực quy tắc phân công kỹ thuật viên
+- Thay đổi: Bổ sung module Assignment Service để kiểm tra tay nghề, trung tâm, tải công việc và lịch hẹn của kỹ thuật viên.
+- Lý do: Phiên bản trước mới quản lý phiếu bảo hành, chưa đáp ứng nghiệp vụ cốt lõi của Luồng 4.
+- Ảnh hưởng: assignment.service.js, technician.repository.js, appointment.repository.js.
+2. Nhận xét: Chưa hiện thực nghiệp vụ lịch hẹn C3
+- Thay đổi: Bổ sung chức năng quản lý lịch hẹn và kiểm tra trùng thời gian.
+- Lý do: Lịch hẹn là thành phần nghiệp vụ chính trong Luồng 4.
+- Ảnh hưởng: appointment.routes.js, appointment.service.js, bảng appointment.
+3. Nhận xét: Chưa đạt tiêu chí S1
+- Thay đổi: Bổ sung đầy đủ CRUD cho thực thể Technician.
+- Lý do: Hệ thống trước đó mới triển khai CRUD cho Ticket.
+- Ảnh hưởng: technician.routes.js, technician.controller.js, technician.service.js, technician.repository.js.
+4. Nhận xét: Chưa có đăng nhập
+- Thay đổi: Bổ sung chức năng đăng nhập, xác thực JWT và phân quyền.
+- Lý do: Cần xác định vai trò và quyền thao tác của Quản lý và Kỹ thuật viên.
+- Ảnh hưởng: auth.service.js, auth.routes.js, auth.middleware.js, database.
+5. Nhận xét: Commit có thông điệp chung chung
+- Thay đổi: Chuẩn hóa nội dung commit theo Conventional Commits.
+- Lý do: Giúp xác định rõ chức năng được thêm, sửa hoặc khắc phục.
+- Ảnh hưởng: Lịch sử Git của repository.
