@@ -5,6 +5,7 @@ const cors = require("cors");
 const express = require("express");
 const pool = require("./config/database");
 const ticketRoutes = require("./routes/ticket.routes");
+const technicianRoutes = require("./routes/technician.routes");
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -51,6 +52,7 @@ app.get("/", (req, res) => {
       home: "/",
       health: "/health",
       tickets: "/api/v1/tickets",
+      technicians: "/api/v1/technicians",
     },
   });
 });
@@ -81,6 +83,7 @@ app.get("/health", async (req, res) => {
 // Giữ nguyên các route hiện có
 // ==============================
 app.use("/api/v1/tickets", ticketRoutes);
+app.use("/api/v1/technicians", technicianRoutes);
 
 // ==============================
 // 6. Xử lý JSON không hợp lệ
