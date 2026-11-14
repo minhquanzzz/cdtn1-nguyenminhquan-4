@@ -6,6 +6,9 @@ const express = require("express");
 const pool = require("./config/database");
 const ticketRoutes = require("./routes/ticket.routes");
 const technicianRoutes = require("./routes/technician.routes");
+const technicianSkillRoutes = require("./routes/technicianSkill.routes");
+const appointmentRoutes = require("./routes/appointment.routes");
+const assignmentRoutes = require("./routes/assignment.routes");
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -53,6 +56,7 @@ app.get("/", (req, res) => {
       health: "/health",
       tickets: "/api/v1/tickets",
       technicians: "/api/v1/technicians",
+      appointments: "/api/v1/appointments",
     },
   });
 });
@@ -83,6 +87,14 @@ app.get("/health", async (req, res) => {
 // Giữ nguyên các route hiện có
 // ==============================
 app.use("/api/v1/tickets", ticketRoutes);
+
+app.use(
+  "/api/v1/technicians/:technicianId/skills",
+  technicianSkillRoutes
+);
+
+app.use("/api/v1/assignments", assignmentRoutes);
+app.use("/api/v1/appointments", appointmentRoutes);
 app.use("/api/v1/technicians", technicianRoutes);
 
 // ==============================
