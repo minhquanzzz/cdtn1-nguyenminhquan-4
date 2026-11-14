@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS app_user (
+    user_id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    password_salt TEXT NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'ADMIN',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_app_user_role CHECK (role IN ('ADMIN'))
+);

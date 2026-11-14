@@ -93,9 +93,17 @@ app.use(
   technicianSkillRoutes
 );
 
-app.use("/api/v1/assignments", assignmentRoutes);
+const authMiddleware = require("./middlewares/auth.middleware");
+
+app.use(
+    "/api/v1/assignments",
+    authMiddleware,
+    assignmentRoutes
+);
+
 app.use("/api/v1/appointments", appointmentRoutes);
 app.use("/api/v1/technicians", technicianRoutes);
+app.use("/api/v1/auth", require("./routes/auth.routes"));
 
 // ==============================
 // 6. Xử lý JSON không hợp lệ
