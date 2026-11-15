@@ -1,66 +1,74 @@
 # TEST PLAN
-## Dự án: Phân công kỹ thuật viên và lịch hẹn
-## CDTN1 - Luồng 4
+## CDTN1 - L4: Phân công kỹ thuật viên và Lên lịch hẹn (Technician Assignment and Appointment Scheduling)
 
-### 1. Phạm vi kiểm thử
+### 1. Phạm vi và Các phần loại trừ (Scope and Exclusions)
 
-Các chức năng được kiểm thử:
+**Phạm vi trong kiểm thử (In Scope):**
+- Tạo, xác thực và truy vấn phiếu yêu cầu (Ticket).
+- Quản lý kỹ thuật viên và xác thực kỹ năng kỹ thuật viên.
+- Tạo, cập nhật, hủy và xóa lịch hẹn.
+- Gợi ý kỹ thuật viên dựa trên kỹ năng, trung tâm dịch vụ và khối lượng công việc.
+- Phân công kỹ thuật viên và phòng ngừa xung đột lịch hẹn.
+- Cập nhật trạng thái phiếu và ghi nhận lịch sử trạng thái.
+- Xác thực dữ liệu đầu vào API và xử lý lỗi.
 
-- Quản lý kỹ thuật viên (Technician).
-- Quản lý phiếu yêu cầu (Ticket).
-- Quản lý lịch hẹn (Appointment).
-- Kiểm tra phân công kỹ thuật viên.
-- Kiểm tra dữ liệu đầu vào API.
-- Kiểm tra tính toàn vẹn dữ liệu PostgreSQL.
+**Phạm vi ngoài kiểm thử (Out of Scope):**
+- Kiểm thử giao diện và độ khả dụng của Frontend UI.
+- Kiểm thử hiệu năng dưới lưu lượng truy cập đồng thời quy mô lớn.
+- Kiểm thử tích hợp dịch vụ bên thứ ba.
+- Kiểm thử triển khai trên môi trường Production.
 
-Phần chủ ý không kiểm thử:
-- Hiệu năng khi có hàng nghìn người dùng đồng thời.
-- Kiểm thử giao diện trên tất cả trình duyệt.
-- Kiểm thử bảo mật chuyên sâu.
-- Các chức năng chưa triển khai trong phạm vi Luồng 4.
+### 2. Loại kiểm thử và Chiến lược (Test Types and Strategy)
 
-### 2. Loại kiểm thử và số lượng
+| Loại kiểm thử | Mô tả |
+|---|---|
+| Kiểm thử đơn vị (Unit Testing) | Xác thực các quy tắc nghiệp vụ ở tầng service sử dụng công cụ chạy test của Node.js. |
+| Kiểm thử API (API Testing) | Xác thực phương thức HTTP, mã phản hồi và dữ liệu phản hồi sử dụng Postman. |
+| Kiểm thử biên (Boundary Testing) | Kiểm tra các ID không hợp lệ, thiếu trường dữ liệu và thời gian đặt lịch không hợp lệ. |
+| Kiểm thử âm tính (Negative Testing) | Xác thực việc từ chối dữ liệu đầu vào không hợp lệ và tài nguyên không khả dụng. |
+| Kiểm thử tích hợp (Integration Testing) | Xác thực sự tương tác giữa các service và PostgreSQL. |
+| Kiểm thử hồi quy (Regression Testing) | Chạy lại các bài test hiện có sau khi thay đổi mã nguồn. |
 
-Dự kiến thực hiện 12 test case:
+Cơ sở kiểm thử tự động hiện tại:
+- Phiếu (Ticket): 6 bài test service.
+- Lịch hẹn (Appointment): 8 bài test service.
+- Phân công (Assignment): 8 bài test service.
+- Bài test cơ bản (Basic tests): 2 bài test.
+- Tổng cộng: 24 bài test.
 
-- Luồng đúng: 3 test case.
-- Giá trị biên: 2 test case.
-- Dữ liệu sai: 3 test case.
-- Bảo mật/chất lượng dữ liệu: 2 test case.
-- Tái lập: 2 test case.
+### 3. Tiêu chí thành công (Success Criteria)
 
-Kỹ thuật chọn dữ liệu:
-- Phân vùng tương đương.
-- Kiểm thử giá trị biên.
-- Kiểm thử dữ liệu hợp lệ và không hợp lệ.
-- Kiểm tra tính toàn vẹn dữ liệu.
+- Tất cả các bài test tự động đều vượt qua (pass).
+- Dữ liệu đầu vào không hợp lệ bị từ chối với mã trạng thái HTTP phù hợp.
+- Các bản ghi bị thiếu trả về mã HTTP 404 thay vì HTTP 500.
+- Kỹ thuật viên phải thuộc cùng trung tâm dịch vụ với phiếu yêu cầu.
+- Kỹ thuật viên phải có đủ năng lực/trình độ chuyên môn cho danh mục phiếu yêu cầu.
+- Kỹ thuật viên không hoạt động (inactive) không được phép phân công.
+- Các lịch hẹn bị trùng lặp phải bị từ chối.
+- Giao dịch phân công thất bại không được để lại các cập nhật cơ sở dữ liệu dở dang (partial updates).
+- Kết quả kiểm thử phải có khả năng tái lập và được hỗ trợ bằng ảnh chụp màn hình.
 
-### 3. Tiêu chí thành công
+### 4. Môi trường kiểm thử và Dữ liệu kiểm thử (Test Environment and Test Data)
 
-- API trả đúng HTTP Status Code.
-- Dữ liệu được lưu chính xác trong PostgreSQL.
-- Không tạo bản ghi khi dữ liệu không hợp lệ.
-- Không cho phép phân công không phù hợp với quy tắc nghiệp vụ.
-- Không phát sinh dữ liệu trùng lịch nếu nghiệp vụ không cho phép.
-- Các test case có kết quả thực tế và ảnh minh chứng.
-- Sau khi sửa bug, toàn bộ test tự động chạy thành công.
+**Môi trường (Environment):**
+- Hệ điều hành: Windows.
+- Môi trường thực thi: Node.js.
+- Backend: Express.js.
+- Cơ sở dữ liệu: PostgreSQL.
+- Môi trường cơ sở dữ liệu: Docker Desktop.
+- Công cụ kiểm thử API: Postman.
+- Kiểm thử tự động: Công cụ chạy test tích hợp sẵn của Node.js.
+- Môi trường phát triển (IDE): Visual Studio Code.
 
-### 4. Môi trường và dữ liệu thử
+**Dữ liệu kiểm thử (Test Data):**
+- Các phiếu yêu cầu có ID hợp lệ và không hợp lệ.
+- Kỹ thuật viên với các cấp độ kỹ năng khác nhau.
+- Kỹ thuật viên từ các trung tâm dịch vụ khác nhau.
+- Kỹ thuật viên đang hoạt động và không hoạt động.
+- Lịch hẹn với khoảng thời gian hợp lệ, không hợp lệ và trùng lặp.
+- Yêu cầu phân công hợp lệ và không hợp lệ.
 
-Môi trường:
-- Windows 11.
-- Node.js 20 LTS.
-- Express.js.
-- PostgreSQL 16.
-- React + Vite.
-- Postman.
-- Visual Studio Code.
+**Lệnh thực thi kiểm thử (Test Execution Command):**
 
-Dữ liệu:
-- Kỹ thuật viên có ID hợp lệ.
-- Kỹ thuật viên không tồn tại.
-- Phiếu yêu cầu hợp lệ.
-- Lịch hẹn hợp lệ.
-- Dữ liệu rỗng và dữ liệu sai định dạng.
-
-Database: PostgreSQL.
+```bash
+npm test

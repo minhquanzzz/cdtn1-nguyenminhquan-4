@@ -1,16 +1,93 @@
+
 services:
+  # 1. PostgreSQL Database
   postgres:
     image: postgres:16
     container_name: cdtn1-l4-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: cdtn1_l4
-      POSTGRES_USER: cdtn1_user
-      POSTGRES_PASSWORD: local_dev_password
+      POSTGRES_DB: ${DB_NAME:-cdtn1_l4}
+      POSTGRES_USER: ${DB_USER:-cdtn1_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  # 2. Database Initialization
+  db-init:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cdtn1-l4-db-init
+    command: ["node", "scripts/docker-init.js"]
+    restart: "no"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-cdtn1_l4}
+      DB_USER: ${DB_USER:-cdtn1_user}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin@12345}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # 3. Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cdtn1-l4-backend
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-cdtn1_l4}
+      DB_USER: ${DB_USER:-cdtn1_user}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+    ports:
+      - "3000:3000"
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://localhost:3000/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # 4. Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: /api/v1
+    container_name: cdtn1-l4-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
 
 volumes:
   postgres_data:
+    name: cdtn1-nguyenminhquan-4_postgres_data
