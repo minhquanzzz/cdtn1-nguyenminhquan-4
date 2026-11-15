@@ -1,15 +1,24 @@
 
 # DEPLOYMENT GUIDE
+## Dự án: Phân công kỹ thuật viên và lịch hẹn (Luồng 4)
 
-## 1. Thông tin dự án
+### 1. Thông tin dự án
 
-- Tên dự án: Phân công kỹ thuật viên và lịch hẹn
-- Môn học: Chuyên đề Tốt nghiệp 1
-- Track: SE
-- Luồng: L4
-- Công nghệ: Node.js, Express, React, PostgreSQL, Docker
+| Thông tin | Nội dung |
+|---|---|
+| Tên dự án | Phân công kỹ thuật viên và lịch hẹn |
+| Môn học | Chuyên đề Tốt nghiệp 1 |
+| Track | SE |
+| Luồng | L4 |
+| Backend | Node.js, Express.js |
+| Frontend | React, Vite |
+| Database | PostgreSQL 16 |
+| Containerization | Docker, Docker Compose |
+| Repository | https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4 |
+| Branch | main |
+| Version | v1.0 |
 
-## 2. Yêu cầu môi trường
+### 2. Yêu cầu hệ thống
 
 Máy triển khai cần cài đặt:
 
@@ -17,23 +26,29 @@ Máy triển khai cần cài đặt:
 - Docker Desktop
 - Docker Compose
 
-Đảm bảo Docker Desktop đang hoạt động trước khi triển khai.
+Đối với Windows, cần khởi động Docker Desktop trước khi thực hiện triển khai.
 
-## 3. Lấy mã nguồn
+### 3. Lấy mã nguồn dự án
 
-Clone repository:
+Mở Terminal hoặc PowerShell và chạy:
 
-```bash
+```powershell
 git clone https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4.git
 ```
 
 Di chuyển vào thư mục dự án:
 
-```bash
+```powershell
 cd cdtn1-nguyenminhquan-4
 ```
 
-## 4. Cấu hình môi trường
+Nếu muốn lấy đúng phiên bản bàn giao:
+
+```powershell
+git checkout v1.0
+```
+
+### 4. Cấu hình biến môi trường
 
 Tạo file `.env` từ file mẫu:
 
@@ -49,122 +64,154 @@ Linux/macOS:
 cp .env.example .env
 ```
 
-Mở file `.env` và cấu hình:
+Mở file `.env` và cấu hình các biến:
 
-- DB_NAME: Tên database PostgreSQL.
-- DB_USER: Tên tài khoản database.
-- DB_PASSWORD: Mật khẩu database.
-- JWT_SECRET: Chuỗi bí mật dùng để ký JWT.
-- ADMIN_PASSWORD: Mật khẩu tài khoản quản trị.
+| Biến | Ý nghĩa |
+|---|---|
+| PORT | Cổng chạy Backend |
+| DB_HOST | Địa chỉ PostgreSQL khi chạy trực tiếp |
+| DB_PORT | Cổng PostgreSQL |
+| DB_NAME | Tên database |
+| DB_USER | Tài khoản database |
+| DB_PASSWORD | Mật khẩu database |
+| JWT_SECRET | Khóa bí mật ký JWT |
+| ADMIN_PASSWORD | Mật khẩu tài khoản Admin |
 
-Không chia sẻ hoặc commit file `.env` lên GitHub.
+Lưu ý:
 
-## 5. Khởi chạy hệ thống
+- Sử dụng mật khẩu riêng cho database.
+- Sử dụng JWT_SECRET có độ dài và độ ngẫu nhiên phù hợp.
+- Đặt ADMIN_PASSWORD thành mật khẩu riêng.
+- Không chia sẻ file `.env`.
+- Không commit file `.env` lên GitHub.
 
-Tại thư mục gốc dự án, chạy:
+### 5. Triển khai bằng Docker Compose
 
-```bash
+Tại thư mục gốc dự án, chạy lệnh:
+
+```powershell
 docker compose up -d --build
 ```
 
-Docker Compose tự động:
+Docker Compose sẽ triển khai các thành phần theo thứ tự phụ thuộc:
 
-1. Khởi chạy PostgreSQL.
-2. Chờ PostgreSQL sẵn sàng.
-3. Khởi tạo database và dữ liệu mẫu thông qua db-init.
-4. Khởi chạy Backend API.
-5. Chờ Backend healthy.
-6. Khởi chạy Frontend.
+1. PostgreSQL Database.
+2. Database Initialization.
+3. Backend API.
+4. Frontend Web Application.
 
-## 6. Truy cập hệ thống
+Database Initialization thực hiện khởi tạo cấu trúc và dữ liệu mẫu theo cấu hình của dự án.
 
-Sau khi các dịch vụ khởi động:
+Backend chỉ khởi động sau khi bước khởi tạo database hoàn tất thành công. Frontend khởi động sau khi Backend đạt trạng thái healthy.
+
+### 6. Truy cập hệ thống
 
 | Thành phần | Địa chỉ |
 |---|---|
 | Frontend | http://localhost:5173 |
 | Backend Health | http://localhost:3000/health |
-| API | http://localhost:3000/api/v1 |
+| Backend API | http://localhost:3000/api/v1 |
 
-## 7. Tài khoản đăng nhập
+Người dùng truy cập Frontend để sử dụng hệ thống.
 
-- Username: admin
-- Password: Giá trị ADMIN_PASSWORD trong file `.env`.
+### 7. Tài khoản quản trị
 
-## 8. Các lệnh quản lý Docker
+Tài khoản Admin được cấu hình trong quá trình Database Initialization.
 
-Khởi động:
+| Thông tin | Giá trị |
+|---|---|
+| Username | admin |
+| Password | Giá trị ADMIN_PASSWORD trong `.env` |
 
-```bash
-docker compose up -d
-```
+Không sử dụng mật khẩu mặc định trong môi trường triển khai thực tế.
 
-Dừng các dịch vụ:
+### 8. Các lệnh quản lý Docker
 
-```bash
-docker compose down
-```
+Xem trạng thái các container:
 
-Xem trạng thái:
-
-```bash
+```powershell
 docker compose ps
 ```
 
-Xem log:
+Xem log toàn bộ hệ thống:
 
-```bash
+```powershell
 docker compose logs -f
 ```
 
 Xem log Backend:
 
-```bash
+```powershell
 docker compose logs -f backend
+```
+
+Xem log PostgreSQL:
+
+```powershell
+docker compose logs -f postgres
 ```
 
 Xem log Database Initialization:
 
-```bash
+```powershell
 docker compose logs db-init
 ```
 
-## 9. Chạy kiểm thử tự động
+Dừng hệ thống:
 
-Chạy kiểm thử Node.js:
-
-```bash
-npm test
-```
-
-Lệnh này cần môi trường Node.js và các dependency của dự án được cài đặt.
-
-## 10. Lưu ý dữ liệu
-
-PostgreSQL sử dụng Docker named volume để lưu trữ dữ liệu.
-
-Lệnh:
-
-```bash
+```powershell
 docker compose down
 ```
 
-không xóa named volume.
+Khởi động lại hệ thống:
 
-Không sử dụng:
+```powershell
+docker compose up -d
+```
 
-```bash
+### 9. Chạy kiểm thử tự động
+
+Để chạy bộ kiểm thử Node.js, cần cài đặt Node.js và các dependencies tại thư mục gốc:
+
+```powershell
+npm ci
+```
+
+Sau đó chạy:
+
+```powershell
+npm test
+```
+
+### 10. Quản lý dữ liệu PostgreSQL
+
+Dữ liệu PostgreSQL được lưu trong Docker named volume:
+
+`cdtn1-nguyenminhquan-4_postgres_data`
+
+Named volume giúp dữ liệu được giữ lại khi dừng hoặc xóa container bằng:
+
+```powershell
+docker compose down
+```
+
+Không sử dụng lệnh sau nếu muốn bảo toàn dữ liệu:
+
+```powershell
 docker compose down -v
 ```
 
-nếu muốn giữ dữ liệu database.
+Lệnh trên có thể xóa volume và dữ liệu PostgreSQL.
 
-## 11. Kết thúc triển khai
+### 11. Kết thúc triển khai
 
-Hệ thống gồm ba thành phần chính:
+Dự án được đóng gói bằng Docker Compose với các thành phần:
 
-- PostgreSQL: Lưu trữ dữ liệu.
-- Backend: Xử lý nghiệp vụ, API và xác thực.
+- PostgreSQL: Quản lý dữ liệu.
+- Backend: Xử lý nghiệp vụ và cung cấp REST API.
 - Frontend: Giao diện người dùng.
+- Database Initialization: Khởi tạo database và dữ liệu mẫu.
 
-Docker Compose quản lý quá trình khởi chạy các thành phần theo thứ tự phụ thuộc.
+Repository: https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4
+
+Version bàn giao: v1.0
