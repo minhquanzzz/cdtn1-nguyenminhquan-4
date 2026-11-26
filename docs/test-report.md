@@ -44,11 +44,11 @@ Kiểm tra tính chính xác và ổn định của các chức năng API trong 
 | Nội dung | Kết quả |
 |---|---|
 | Tổng số Test Case thiết kế | 12 |
-| Số Test Case đã chạy | 0 |
-| Số Test Case PASS | 0 |
+| Số Test Case đã chạy | 12 |
+| Số Test Case PASS | 12 |
 | Số Test Case FAIL | 0 |
-| Số Test Case chưa chạy | 12 |
-| Số Test Case có ảnh minh chứng | 0 |
+| Số Test Case chưa chạy | 0 |
+| Số Test Case có ảnh minh chứng | 12 |
 
 ## 4. Đánh giá
 
