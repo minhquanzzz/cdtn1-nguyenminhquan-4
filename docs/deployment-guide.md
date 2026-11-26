@@ -1,15 +1,15 @@
-
 # DEPLOYMENT GUIDE
-## Dự án: Phân công kỹ thuật viên và lịch hẹn (Luồng 4)
 
-### 1. Thông tin dự án
+## Project: Technician Assignment and Appointment Scheduling (Workflow 4)
 
-| Thông tin | Nội dung |
+### 1. Project Information
+
+| Information | Details |
 |---|---|
-| Tên dự án | Phân công kỹ thuật viên và lịch hẹn |
-| Môn học | Chuyên đề Tốt nghiệp 1 |
+| Project Name | Technician Assignment and Appointment Scheduling |
+| Course | Graduation Specialization 1 |
 | Track | SE |
-| Luồng | L4 |
+| Workflow | L4 |
 | Backend | Node.js, Express.js |
 | Frontend | React, Vite |
 | Database | PostgreSQL 16 |
@@ -18,200 +18,206 @@
 | Branch | main |
 | Version | v1.0 |
 
-### 2. Yêu cầu hệ thống
+### 2. System Requirements
 
-Máy triển khai cần cài đặt:
+The deployment machine must have the following software installed:
 
 - Git
 - Docker Desktop
 - Docker Compose
 
-Đối với Windows, cần khởi động Docker Desktop trước khi thực hiện triển khai.
+For Windows, Docker Desktop must be started before proceeding with the deployment.
 
-### 3. Lấy mã nguồn dự án
+### 3. Obtaining the Project Source Code
 
-Mở Terminal hoặc PowerShell và chạy:
+Open Terminal or PowerShell and run:
 
 ```powershell
 git clone https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4.git
 ```
 
-Di chuyển vào thư mục dự án:
+Navigate to the project directory:
 
 ```powershell
 cd cdtn1-nguyenminhquan-4
 ```
 
-Nếu muốn lấy đúng phiên bản bàn giao:
+To retrieve the specific release version:
 
 ```powershell
 git checkout v1.0
 ```
 
-### 4. Cấu hình biến môi trường
+### 4. Environment Variable Configuration
 
-Tạo file `.env` từ file mẫu:
+Create a `.env` file from the provided template.
 
-Windows PowerShell:
+**Windows PowerShell:**
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Linux/macOS:
+**Linux/macOS:**
 
 ```bash
 cp .env.example .env
 ```
 
-Mở file `.env` và cấu hình các biến:
+Open the `.env` file and configure the following environment variables:
 
-| Biến | Ý nghĩa |
+| Variable | Description |
 |---|---|
-| PORT | Cổng chạy Backend |
-| DB_HOST | Địa chỉ PostgreSQL khi chạy trực tiếp |
-| DB_PORT | Cổng PostgreSQL |
-| DB_NAME | Tên database |
-| DB_USER | Tài khoản database |
-| DB_PASSWORD | Mật khẩu database |
-| JWT_SECRET | Khóa bí mật ký JWT |
-| ADMIN_PASSWORD | Mật khẩu tài khoản Admin |
+| PORT | Backend server port |
+| DB_HOST | PostgreSQL host address when running directly |
+| DB_PORT | PostgreSQL port |
+| DB_NAME | Database name |
+| DB_USER | Database username |
+| DB_PASSWORD | Database password |
+| JWT_SECRET | Secret key used to sign JWT tokens |
+| ADMIN_PASSWORD | Administrator account password |
 
-Lưu ý:
+**Important notes:**
 
-- Sử dụng mật khẩu riêng cho database.
-- Sử dụng JWT_SECRET có độ dài và độ ngẫu nhiên phù hợp.
-- Đặt ADMIN_PASSWORD thành mật khẩu riêng.
-- Không chia sẻ file `.env`.
-- Không commit file `.env` lên GitHub.
+- Use a unique and secure password for the database.
+- Ensure that `JWT_SECRET` has sufficient length and randomness.
+- Set `ADMIN_PASSWORD` to a unique and secure password.
+- Do not share the `.env` file.
+- Do not commit the `.env` file to GitHub.
 
-### 5. Triển khai bằng Docker Compose
+### 5. Deployment Using Docker Compose
 
-Tại thư mục gốc dự án, chạy lệnh:
+From the project root directory, run the following command:
 
 ```powershell
 docker compose up -d --build
 ```
 
-Docker Compose sẽ triển khai các thành phần theo thứ tự phụ thuộc:
+Docker Compose will deploy the components according to their dependency order:
 
 1. PostgreSQL Database.
 2. Database Initialization.
 3. Backend API.
 4. Frontend Web Application.
 
-Database Initialization thực hiện khởi tạo cấu trúc và dữ liệu mẫu theo cấu hình của dự án.
+The Database Initialization service initializes the database schema and sample data according to the project configuration.
 
-Backend chỉ khởi động sau khi bước khởi tạo database hoàn tất thành công. Frontend khởi động sau khi Backend đạt trạng thái healthy.
+The Backend starts only after the database initialization process has been completed successfully.
 
-### 6. Truy cập hệ thống
+The Frontend starts after the Backend reaches a healthy status.
 
-| Thành phần | Địa chỉ |
+### 6. Accessing the System
+
+| Component | URL |
 |---|---|
 | Frontend | http://localhost:5173 |
 | Backend Health | http://localhost:3000/health |
 | Backend API | http://localhost:3000/api/v1 |
 
-Người dùng truy cập Frontend để sử dụng hệ thống.
+Users can access the Frontend through a web browser to interact with and use the system.
 
-### 7. Tài khoản quản trị
+### 7. Administrator Account
 
-Tài khoản Admin được cấu hình trong quá trình Database Initialization.
+The administrator account is configured during the Database Initialization process.
 
-| Thông tin | Giá trị |
+| Information | Value |
 |---|---|
 | Username | admin |
-| Password | Giá trị ADMIN_PASSWORD trong `.env` |
+| Password | The value of `ADMIN_PASSWORD` in the `.env` file |
 
-Không sử dụng mật khẩu mặc định trong môi trường triển khai thực tế.
+> **Security Note:** Do not use default passwords in a production environment.
 
-### 8. Các lệnh quản lý Docker
+### 8. Docker Management Commands
 
-Xem trạng thái các container:
+**View the status of all containers:**
 
 ```powershell
 docker compose ps
 ```
 
-Xem log toàn bộ hệ thống:
+**View logs for the entire system:**
 
 ```powershell
 docker compose logs -f
 ```
 
-Xem log Backend:
+**View Backend logs:**
 
 ```powershell
 docker compose logs -f backend
 ```
 
-Xem log PostgreSQL:
+**View PostgreSQL logs:**
 
 ```powershell
 docker compose logs -f postgres
 ```
 
-Xem log Database Initialization:
+**View Database Initialization logs:**
 
 ```powershell
 docker compose logs db-init
 ```
 
-Dừng hệ thống:
+**Stop the system:**
 
 ```powershell
 docker compose down
 ```
 
-Khởi động lại hệ thống:
+**Start the system again:**
 
 ```powershell
 docker compose up -d
 ```
 
-### 9. Chạy kiểm thử tự động
+### 9. Running Automated Tests
 
-Để chạy bộ kiểm thử Node.js, cần cài đặt Node.js và các dependencies tại thư mục gốc:
+To execute the Node.js automated test suite, ensure that Node.js is installed.
+
+Install the required dependencies from the project root directory:
 
 ```powershell
 npm ci
 ```
 
-Sau đó chạy:
+Then, run the automated tests using the following command:
 
 ```powershell
 npm test
 ```
 
-### 10. Quản lý dữ liệu PostgreSQL
+### 10. PostgreSQL Data Management
 
-Dữ liệu PostgreSQL được lưu trong Docker named volume:
+PostgreSQL data is stored in the following Docker named volume:
 
 `cdtn1-nguyenminhquan-4_postgres_data`
 
-Named volume giúp dữ liệu được giữ lại khi dừng hoặc xóa container bằng:
+The named volume ensures that database data is preserved when containers are stopped or removed using the following command:
 
 ```powershell
 docker compose down
 ```
 
-Không sử dụng lệnh sau nếu muốn bảo toàn dữ liệu:
+> **WARNING:** Do not use the following command if you want to preserve the database data.
 
 ```powershell
 docker compose down -v
 ```
 
-Lệnh trên có thể xóa volume và dữ liệu PostgreSQL.
+This command may permanently remove the Docker volume and all associated PostgreSQL data.
 
-### 11. Kết thúc triển khai
+### 11. Deployment Summary
 
-Dự án được đóng gói bằng Docker Compose với các thành phần:
+The project is packaged using Docker Compose and consists of the following components:
 
-- PostgreSQL: Quản lý dữ liệu.
-- Backend: Xử lý nghiệp vụ và cung cấp REST API.
-- Frontend: Giao diện người dùng.
-- Database Initialization: Khởi tạo database và dữ liệu mẫu.
+- **PostgreSQL:** Manages and stores application data.
+- **Backend:** Handles business logic and provides REST APIs.
+- **Frontend:** Provides the user interface for interacting with the system.
+- **Database Initialization:** Initializes the database schema and sample data.
 
-Repository: https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4
+---
 
-Version bàn giao: v1.0
+**Repository:** https://github.com/minhquanzzz/cdtn1-nguyenminhquan-4
+
+**Release Version:** v1.0
